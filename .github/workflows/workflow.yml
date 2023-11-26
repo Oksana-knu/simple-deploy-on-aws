@@ -41,7 +41,8 @@ jobs:
         python3 -m unittest tests.py
       env:
         CI: true
-    - name: Deploy to Heroku       
+    - name: Deploy to Heroku  
+      run: |
         curl 'https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/'
        
        
