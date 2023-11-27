@@ -11,8 +11,8 @@ terraform {
 # Configure the AWS provider
 provider "aws" {
   region     = "eu-central-1"
-  access_key = "${{secrets.AWS_ACCESS_KEY_ID}}"
-  secret_key = "${{secrets.AWS_ACCESS_SECRET_KEY}}"
+  access_key = "${secrets.AWS_ACCESS_KEY_ID}"
+  secret_key = "${secrets.AWS_ACCESS_SECRET_KEY}"
 }
 
 resource "aws_security_group" "web_app" {
