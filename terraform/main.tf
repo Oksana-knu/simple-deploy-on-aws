@@ -37,7 +37,7 @@ resource "aws_security_group" "web_app" {
   }
 
   tags= {
-    Name = "web_app"
+    Name = "web_app_v1"
   }
 }
 
