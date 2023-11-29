@@ -16,6 +16,7 @@ RUN chmod u+x /usr/local/bin/entrypoint.sh
 COPY app.py /app_dir/app.py
 
 WORKDIR /app_dir
-EXPOSE 8000
+EXPOSE 8001
+EXPOSE 80
 
 ENTRYPOINT ["/bin/bash", "-c", "entrypoint.sh"]
