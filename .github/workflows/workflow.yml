@@ -41,6 +41,13 @@ jobs:
         python3 -m unittest test.py
       env:
         CI: true    
+
+    - name: Build image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        tags: myimage:latest
+      #command: ["/bin/bash", "-c", "entrypoint.sh"]
         
     - name: Setup Terraform
       env:
