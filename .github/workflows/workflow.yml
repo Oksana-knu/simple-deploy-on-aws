@@ -51,7 +51,8 @@ jobs:
 
     - name: Test image
       run: |
-        docker run --rm myimage:latest
+        docker run -rm -d myimage:latest
+        curl --fail http://localhost:5000
         
     - name: Setup Terraform
       env:
