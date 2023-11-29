@@ -44,6 +44,17 @@ resource "aws_instance" "webapp_instance" {
   ami           = "ami-0669b163befffbdfc"
   instance_type = "t2.micro"
   security_groups= ["web_app"]
+
+  user_data = <<EOF
+  #!/bin/bash
+  yum update -y
+  amazon-linux-extras install docker
+  service docker start
+  usermod -a -G docker ec2-user
+  chkconfig docker on
+  EOF
+
+ 
   tags = {
     Name = "webapp_instance"
   }
