@@ -41,7 +41,7 @@ resource "aws_security_group" "web_app" {
 }
 
 data "template_file" "user_data" {
-  template = "${file("userdata.tpl")}"
+  template = "${file("user_data.sh")}"
 }
 
 resource "aws_instance" "webapp_instance" {
