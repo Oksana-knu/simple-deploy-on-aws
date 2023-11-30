@@ -49,7 +49,7 @@ resource "aws_instance" "webapp_instance" {
   instance_type = "t2.micro"
   security_groups= ["web_app"]
 
-  user_data    =  "${base64encode(data.template_file.test.rendered)}"
+  user_data    =  "${base64encode(data.template_file.user_data.rendered)}"
 
   tags = {
     Name = "webapp_instance"
