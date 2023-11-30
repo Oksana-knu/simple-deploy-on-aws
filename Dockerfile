@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # This line means we don't need a command definition in main.tf
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
