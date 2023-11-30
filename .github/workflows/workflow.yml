@@ -87,4 +87,15 @@ jobs:
       run: terraform apply -input=false -auto-approve
       working-directory: terraform
        
-       
+    - name: Deploy Docker Image to EC2
+      uses: appleboy/ssh-action@master
+      with:
+          host: webapp_instance
+          envs: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+          script: |-
+             sudo apt update
+             sudo apt install docker.io -y
+             sudo docker stop myappcontainer || true
+             sudo docker rm myappcontainer || true
+             sudo docker pull myimage:latest
+             sudo docker run -d --name my_container -p 80:8080 myimage:latest
