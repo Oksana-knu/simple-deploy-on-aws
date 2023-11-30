@@ -89,8 +89,9 @@ jobs:
       continue-on-error: true
        
     - name: Deploy Docker Image to EC2
-      uses: appleboy/ssh-action@master
+      uses: aws-actions/configure-aws-credentials@v4
       with:
+          role-to-assume: arn:aws:iam::222222222222:role/my-github-actions-role-prod
           host: webapp_instance
           envs: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
           script: |-
