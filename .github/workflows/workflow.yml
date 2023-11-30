@@ -48,6 +48,7 @@ jobs:
       
     - name: Build, tag, and push image to Amazon ECR
       env:
+        region: 'eu-central-1'
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: flask_app_repository
         IMAGE_TAG: my_image
