@@ -52,6 +52,8 @@ jobs:
     - name: Test image
       run: |
         docker run --rm -d myimage:latest
+        netstat -tlpen | grep 5000
+        netstat -tlpen | grep 8000
         curl -v http://localhost:5000
         
     - name: Setup Terraform
