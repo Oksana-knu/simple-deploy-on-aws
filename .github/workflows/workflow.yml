@@ -41,7 +41,11 @@ jobs:
         python3 -m unittest test.py
       env:
         CI: true    
-
+        
+    - name: Run app
+      run: |
+        gunicorn -b 0.0.0.0:8000 app:app
+        
     - name: Build image
       uses: docker/build-push-action@v5
       with:
