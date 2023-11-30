@@ -45,7 +45,7 @@ jobs:
     - name: Build app image
       run: |
         docker build -t myimage .
-        docker run -it --rm -d-p 8080:8080 myimage
+        docker run -it --rm -p 8080:8080 myimage
         curl -v localhost:8080
         
     - name: Setup Terraform
