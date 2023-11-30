@@ -12,8 +12,6 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-variable "REPOSITORY_URI" {}
-
 resource "aws_lightsail_container_service" "flask_application" {
   name = "flask-app"
   power = "nano"
