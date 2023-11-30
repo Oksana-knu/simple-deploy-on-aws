@@ -47,7 +47,6 @@ jobs:
       with:
         context: .
         tags: myimage:latest
-      #command: ["/bin/bash", "-c", "entrypoint.sh"]
         
     - name: Setup Terraform
       env:
