@@ -1,15 +1,13 @@
-FROM python:3.7-slim
+FROM python:3.7-alpine
 
-RUN apt-get update && apt-get install -y wget
-COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt --upgrade pip
+WORKDIR /app/
 
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod u+x /usr/local/bin/entrypoint.sh
+COPY . /app/
 
-COPY app.py /app_dir/app.py
+RUN pip install -r requirements.txt
 
-WORKDIR /app_dir
-EXPOSE 8000
+# Consistent with app.py
+EXPOSE 5000
 
-ENTRYPOINT ["/bin/bash", "-c", "entrypoint.sh"]
+# This line means we don't need a command definition in main.tf
+CMD ["python", "app.py"]
