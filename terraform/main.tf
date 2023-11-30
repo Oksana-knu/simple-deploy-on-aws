@@ -12,30 +12,31 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-resource "awslightsail_container_service" "test" {
-  name        = "container-service-1"
-  power       = "nano"
-  scale       = 1
-  is_disabled = false
+resource "aws_lightsail_container_service" "flask_application" {
+  name = "flask-application"
+  power = "nano"
+  scale = 1
   tags = {
-    foo1 = "bar1"
-    foo2 = ""
+    version = "1.0.0"
   }
 }
 
-resource "awslightsail_container_deployment" "test" {
-  container_service_name = awslightsail_container_service.test.id
+resource "aws_lightsail_container_service_deployment_version" "flask_app_deployment" {
   container {
-    container_name = "test1"
-    image          = "amazon/amazon-lightsail:hello-world"
-    port {
-      port_number = 80
-      protocol    = "HTTP"
+    container_name = "flask-application"
+
+    image = "myimage:latest"
+    
+    ports = {
+      # Consistent with the port exposed by the Dockerfile and app.py
+      8080 = "HTTP"
     }
   }
+
   public_endpoint {
-    container_name = "test1"
-    container_port = 80
+    container_name = "flask-application"
+    # Consistent with the port exposed by the Dockerfile and app.py
+    container_port = 8080
 
     health_check {
       healthy_threshold   = 2
@@ -47,5 +48,5 @@ resource "awslightsail_container_deployment" "test" {
     }
   }
 
-  service_name = aws_lightsail_container_service.test.name
+  service_name = aws_lightsail_container_service.flask_application.name
 }
