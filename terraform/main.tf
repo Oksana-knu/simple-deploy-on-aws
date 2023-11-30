@@ -40,6 +40,10 @@ resource "aws_security_group" "web_app" {
   }
 }
 
+data "template_file" "user_data" {
+  template = "${file("userdata.tpl")}"
+}
+
 resource "aws_instance" "webapp_instance" {
   ami           = "ami-0669b163befffbdfc"
   instance_type = "t2.micro"
