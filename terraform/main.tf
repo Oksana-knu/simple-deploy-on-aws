@@ -45,15 +45,7 @@ resource "aws_instance" "webapp_instance" {
   instance_type = "t2.micro"
   security_groups= ["web_app"]
 
-  user_data = <<EOF
-  #!/bin/bash
-  sudo yum update -y
-  sudo yum install docker
-  sudo service docker start
-  sudo usermod -a -G docker ec2-user
-  chkconfig docker on
-  EOF
-
+  user_data = file("user_data.sh")
  
   tags = {
     Name = "webapp_instance"
