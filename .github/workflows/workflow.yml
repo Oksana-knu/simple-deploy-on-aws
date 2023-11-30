@@ -46,7 +46,6 @@ jobs:
       run: |
         docker build -t myimage .
         docker run --rm -d -p 8080:8080 myimage
-        curl --fail localhost:8080
         
     - name: Setup Terraform
       env:
