@@ -86,18 +86,3 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform apply -input=false -auto-approve
       working-directory: terraform
-      continue-on-error: true
-       
-    - name: Deploy Docker Image to EC2
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-          role-to-assume: arn:aws:iam::222222222222:role/my-github-actions-role-prod
-          host: webapp_instance
-          envs: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
-          script: |-
-             sudo apt update
-             sudo apt install docker.io -y
-             sudo docker stop myappcontainer || true
-             sudo docker rm myappcontainer || true
-             sudo docker pull myimage:latest
-             sudo docker run -d --name my_container -p 80:8080 myimage:latest
