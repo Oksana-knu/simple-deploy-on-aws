@@ -44,7 +44,7 @@ jobs:
         
     - name: Run app
       run: |
-        gunicorn -b 0.0.0.0:8000 app:app
+        gunicorn -b 0.0.0.0:8000 app:app --log-file=8000
         
     - name: Build image
       uses: docker/build-push-action@v5
