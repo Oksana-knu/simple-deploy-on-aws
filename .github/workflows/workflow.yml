@@ -1,4 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
+    # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 name: Python app deploy on aws by gitAction v1
@@ -40,11 +40,7 @@ jobs:
       run: |
         python3 -m unittest test.py
       env:
-        CI: true    
-        
-    - name: Run app
-      run: |
-        gunicorn -b 0.0.0.0:8000 app:app --log-file=8000
+        CI: true 
         
     - name: Build image
       uses: docker/build-push-action@v5
@@ -56,7 +52,7 @@ jobs:
     - name: Test image
       run: |
         docker run --rm myimage:latest
-        curl --fail http://localhost:80
+        curl --fail http://localhost:5000
         
     - name: Setup Terraform
       env:
