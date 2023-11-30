@@ -25,7 +25,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   container {
     container_name = "flask-application"
 
-    image = "myimage:latest"
+    image = "myimage_xxxxx:latest"
     
     ports = {
       # Consistent with the port exposed by the Dockerfile and app.py
