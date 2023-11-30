@@ -42,7 +42,7 @@ jobs:
       env:
         CI: true 
         
-    - name: Build image
+    - name: Build app image
       uses: docker/build-push-action@v5
       with:
         context: .
