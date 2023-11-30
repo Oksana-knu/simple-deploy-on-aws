@@ -43,10 +43,10 @@ jobs:
         CI: true 
         
     - name: Build app image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        tags: myimage:latest
+      run: |
+        docker build -t myimage .
+        docker run -it --rm -d-p 8080:8080 myimage
+        curl -v localhost:8080
         
     - name: Setup Terraform
       env:
