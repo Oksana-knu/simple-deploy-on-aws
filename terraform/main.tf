@@ -20,6 +20,14 @@ resource "aws_lightsail_container_service" "flask_application" {
   name = "flask-app"
   power = "nano"
   scale = 1
+
+  private_registry_access {
+    ecr_image_puller_role {
+      is_active = true
+    }
+  }
+
+
   tags = {
     version = "1.0.0"
   }
@@ -38,7 +46,7 @@ resource "aws_lightsail_container_service_deployment_version" "flask_app_deploym
   }
 
   public_endpoint {
-    container_name = "flask-app"
+    container_name = "flask-application"
     # Consistent with the port exposed by the Dockerfile and app.py
     container_port = 8080
 
